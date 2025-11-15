@@ -79,7 +79,7 @@ const AppShowcase = () => {
               <div className="image-wrapper bg-[#FFE7EB]">
                 <img src="/images/fakeNewsDt.png" alt="YC Directory App" />
               </div>
-              <h2>Latest Ongoing: AI-Based Fake News Detection System</h2>
+              <h2>AI-Based Fake News Detection System</h2>
               <p className="text-white-50 md:text-xl">
               Python, Flask, Streamlit, Scikit-Learn, NumPy, Matplotlib, Pandas, TF-IDF
               </p>

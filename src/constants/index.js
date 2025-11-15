@@ -12,8 +12,8 @@ const navLinks = [
       link: "#skills",
     },
     {
-      name: "Testimonials",
-      link: "#testimonials",
+      name: "Education",
+      link: "#education",
     },
   ];
   
@@ -129,31 +129,31 @@ const navLinks = [
   
   const techStackIcons = [
     {
-      name: "React Developer",
+      name: "Elegant Frontend",
       modelPath: "/models/react_logo-transformed.glb",
       scale: 1,
       rotation: [0, 0, 0],
     },
     {
-      name: "Python Developer",
+      name: "AI/ML Fusion",
       modelPath: "/models/python-transformed.glb",
       scale: 0.8,
       rotation: [0, 0, 0],
     },
     {
-      name: "Backend Developer",
+      name: "Scalable Backend",
       modelPath: "/models/node-transformed.glb",
       scale: 5,
       rotation: [0, -Math.PI / 2, 0],
     },
     {
-      name: "Interactive Developer",
+      name: "Interactive Experience",
       modelPath: "/models/three.js-transformed.glb",
       scale: 0.05,
       rotation: [0, 0, 0],
     },
     {
-      name: "Project Manager",
+      name: "Streamlined Workflows",
       modelPath: "/models/git-svg-transformed.glb",
       scale: 0.05,
       rotation: [0, -Math.PI / 4, 0],
@@ -163,41 +163,41 @@ const navLinks = [
   const expCards = [
     {
       review:
-        "Adrian brought creativity and technical expertise to the team, significantly improving our frontend performance. His work has been invaluable in delivering faster experiences.",
-      imgPath: "/images/exp1.png",
-      logoPath: "/images/logo1.png",
-      title: "Frontend Developer",
-      date: "January 2023 - Present",
-      responsibilities: [
-        "Developed and maintained user-facing features for the Hostinger website.",
-        "Collaborated closely with UI/UX designers to ensure seamless user experiences.",
-        "Optimized web applications for maximum speed and scalability.",
-      ],
-    },
-    {
-      review:
-        "Adrian’s contributions to Docker's web applications have been outstanding. He approaches challenges with a problem-solving mindset.",
-      imgPath: "/images/exp2.png",
+        "Jawad consistently delivered dependable backend systems and improved our workflows with well-structured, scalable solutions. His ownership of tasks, and optimizations and fixes made him a reliable part of the engineering team.",
+      imgPath: "/images/exp 2.png",
       logoPath: "/images/logo2.png",
-      title: "Full Stack Developer",
-      date: "June 2020 - December 2023",
+      title: "Associate Software Engineer",
+      date: "Nov 2025 - Present",
       responsibilities: [
-        "Led the development of Docker's web applications, focusing on scalability.",
-        "Worked with backend engineers to integrate APIs seamlessly with the frontend.",
-        "Contributed to open-source projects that were used with the Docker ecosystem.",
+        "Set up event-driven microservices with RabbitMQ on Docker, implementing retries, DLQs, and fanout/direct exchanges for resilient message workflows.",
+        "Applied clean architecture principles using modular layering, MongoDB transactions, structured logging, and factory patterns in Node.js services.",
+        "Built scalable, client-facing workflows using Remix, Polaris, and Liquid for Shopify Apps and Extensions."
       ],
     },
     {
       review:
-        "Adrian’s work on Appwrite’s mobile app brought a high level of quality and efficiency. He delivered solutions that enhanced our mobile experience & meet our product goals.",
-      imgPath: "/images/exp3.png",
-      logoPath: "/images/logo3.png",
-      title: "React Native Developer",
-      date: "March 2019 - May 2020",
+        "Jawad showed strong curiosity and commitment as an intern, implementing tasks with dedication. He learned fast, contributed meaningfully, and demonstrated clear potential for growth.",
+      imgPath: "/images/exp 2.png",
+      logoPath: "/images/logo2.png",
+      title: "Software Engineering Intern",
+      date: "August - October 2025",
       responsibilities: [
-        "Built cross-platform mobile apps using React Native, integrating with Appwrite's backend services.",
-        "Improved app performance and user experience through code optimization and testing.",
-        "Coordinated with the product team to implement features based on feedback.",
+        "Migrated APIs from REST to GraphQL while working with OAuth2 and multi-system communication for Shopify Apps and Extensions.",
+        "Collaborated on integrations with courier and messaging services, gaining exposure to logistics, ERP, and e-commerce ecosystems.",
+        "Automated routine workflows using Python scripting and explored gRPC fundamentals, multithreading, and core Java."
+      ],
+    },
+    {
+      review:
+        "Jawad quickly immersed at Tinkerbyte Labs, working hard—even late nights—on full-stack tasks, understanding and explaining client requirements. Though he faced challenges, being exposed to the actual lifecycle for the first time, he stayed committed, supported the team, and has strong potential with much more to unlock than he delivered here.",
+      imgPath: "/images/exp3 (2).png",
+      logoPath: "/images/logo3 (2).png",
+      title: "Junior Full Stack Developer (MERN)",
+      date: "June - July 2025",
+      responsibilities: [
+        "Built full-stack features using Next.js, PostgreSQL, and MERN in a collaborative team with clean, reusable code.",
+        "Integrated payment integrations like Stripe and Fiserv for subscription logic in Fintech modules.",
+        "Coordinated with the team in implementing features and understanding client requirements.",
       ],
     },
   ];
