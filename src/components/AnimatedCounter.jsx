@@ -21,30 +21,14 @@ const AnimatedCounter = () => {
       // Set initial value to 0
       gsap.set(numberElement, { innerText: "0" });
 
-      // Create the counting animation
-      gsap.to(numberElement, {
-        innerText: item.value,
-        duration: 2.5,
-        ease: "power2.out",
-        snap: { innerText: 1 }, // Ensures whole numbers
-        scrollTrigger: {
-          trigger: "#counter",
-          start: "top center",
-        },
-        // Add the suffix after counting is complete
-        onComplete: () => {
-          numberElement.textContent = `${item.value}${item.suffix}`;
-        },
-        // Create a single ScrollTrigger
-    });
+      // Create the counting animation;
 }, counterRef);
 ScrollTrigger.create({
-    trigger: "#counter",
-    start: "top bottom-=100", // Starts when top of counter is 100px before bottom of viewport
-    onEnter: () => setCounterStarted(true),
-    markers: false // Set to true for debugging
-  });
-  ScrollTrigger.refresh();
+  trigger: counterRef.current,
+  start: "top bottom-=100",
+  onEnter: () => setCounterStarted(true),
+});
+
   }, []);
 
   return (

@@ -8,8 +8,10 @@ import { useGLTF, useTexture } from "@react-three/drei";
 import { EffectComposer, SelectiveBloom } from "@react-three/postprocessing";
 import { BlendFunction } from "postprocessing";
 import * as THREE from "three";
-
+import { useMediaQuery } from "react-responsive";
 export function Room(props) {
+  const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
+  
   const { nodes, materials } = useGLTF("/models/optimized-room.glb");
   const screensRef = useRef();
   const matcapTexture = useTexture("/images/textures/mat1.png");
@@ -44,15 +46,18 @@ export function Room(props) {
 
   return (
     <group {...props} dispose={null}>
-      <EffectComposer>
-        <SelectiveBloom
-          selection={screensRef}
-          intensity={0.2} // Strength of the bloom
-          luminanceThreshold={0.2} // Minimum luminance needed
-          luminanceSmoothing={0.9} // Smooth transition
-          blendFunction={BlendFunction.ADD} // How it blends
-        />
-      </EffectComposer>
+      {!isMobile && (
+        <EffectComposer>
+          <SelectiveBloom
+            selection={screensRef}
+            intensity={0.2}
+            luminanceThreshold={0.2}
+            luminanceSmoothing={0.9}
+            blendFunction={BlendFunction.ADD}
+          />
+        </EffectComposer>
+      )}
+
       <mesh
         geometry={nodes._________6_blinn1_0.geometry}
         material={curtainMaterial}

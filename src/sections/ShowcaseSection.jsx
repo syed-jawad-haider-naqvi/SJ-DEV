@@ -1,89 +1,116 @@
-import { useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
+import { useEffect, useRef } from "react";
 
-gsap.registerPlugin(ScrollTrigger);
+// ---------- CSS styles injected directly ---------
+const styles = `
+.fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.9s ease-out, transform 0.9s ease-out;
+}
 
-const AppShowcase = () => {
-  const sectionRef = useRef(null);
-  const rydeRef = useRef(null);
-  const libraryRef = useRef(null);
-  const ycDirectoryRef = useRef(null);
+.fade-up.show {
+  opacity: 1;
+  transform: translateY(0);
+}
 
-  useGSAP(() => {
-    // Animation for the main section
-    gsap.fromTo(
-      sectionRef.current,
-      { opacity: 0 },
-      { opacity: 1, duration: 1.5 }
+`;
+
+if (typeof document !== "undefined" && !document.getElementById("fade-float-styles")) {
+  const styleTag = document.createElement("style");
+  styleTag.id = "fade-float-styles";
+  styleTag.innerHTML = styles;
+  document.head.appendChild(styleTag);
+}
+// --------------------------------------------------
+
+// Hook: reveal on scroll
+const useReveal = () => {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.classList.add("show");
+          observer.unobserve(el);
+        }
+      },
+      { threshold: 0.2 }
     );
 
-    // Animations for each app showcase
-    const cards = [rydeRef.current, libraryRef.current, ycDirectoryRef.current];
-
-    cards.forEach((card, index) => {
-      gsap.fromTo(
-        card,
-        {
-          y: 50,
-          opacity: 0,
-        },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 1,
-          delay: 0.3 * (index + 1),
-          scrollTrigger: {
-            trigger: card,
-            start: "top bottom-=100",
-          },
-        }
-      );
-    });
+    observer.observe(el);
+    return () => observer.disconnect();
   }, []);
 
+  return ref;
+};
+
+// Wrapper component
+const FadeFloatCard = ({ className, children }) => {
+  const ref = useReveal();
   return (
-    <div id="work" ref={sectionRef} className="app-showcase">
+    <div ref={ref} className={`fade-up ${className || ""}`}>
+      {children}
+    </div>
+  );
+};
+
+// -------- COMPONENT ----------
+const AppShowcase = () => {
+  return (
+    <div id="work" className="app-showcase">
       <div className="w-full">
         <div className="showcaselayout">
-          <div ref={rydeRef} className="first-project-wrapper cursor-pointer" onClick={()=>window.location="https://drive.google.com/file/d/17O7PBlDaCM5G0P8GyStzefzzvCXxb8tP/view?usp=drive_link"}>
+
+          {/* FIRST LARGE PROJECT */}
+          <FadeFloatCard
+            className="first-project-wrapper cursor-pointer"
+            onClick={() =>
+              (window.location =
+                "https://drive.google.com/file/d/17O7PBlDaCM5G0P8GyStzefzzvCXxb8tP/view?usp=drive_link")
+            }
+          >
             <div className="image-wrapper">
               <img src="/images/project1.png" alt="PetVerse Interface" />
             </div>
             <div className="text-content">
               <h2>
-              PetVerse Vets: All-in-one veterinary platform connecting pet owners with vets through seamless appointments, payments, and communication.              </h2>
+                PetVerse Vets: All-in-one veterinary platform connecting pet
+                owners with vets through seamless appointments, payments, and
+                communication.
+              </h2>
               <p className="text-white-50 md:text-xl">
-                An app built with MERN Stack with Stripe payment integration for a fast,
-                user-friendly experience for pet owners and vets.
+                MERN Stack with Stripe for fast, smooth experience.
               </p>
             </div>
-          </div>
+          </FadeFloatCard>
 
+          {/* SMALL PROJECTS LIST */}
           <div className="project-list-wrapper overflow-hidden">
-            <div className="project" ref={libraryRef}>
+
+            <FadeFloatCard className="project">
               <div className="image-wrapper bg-[#FFEFDB]">
-                <img
-                  src="/images/project2.png"
-                  alt="Library Management Platform"
-                />
+                <img src="/images/project2.png" alt="Library Platform" />
               </div>
               <h2>RestoMania:</h2>
               <p className="text-white-50 md:text-xl">
-               Market-Ready Restauraunt Management Desktop Platform in C#, .NET and Microsoft SQL
+                Market-ready Restaurant Management Desktop Platform (C#, .NET, SQL).
               </p>
-            </div>
-           
-            <div className="project" ref={ycDirectoryRef}>
+            </FadeFloatCard>
+
+            <FadeFloatCard className="project">
               <div className="image-wrapper bg-[#FFE7EB]">
-                <img src="/images/fakeNewsDt.png" alt="YC Directory App" />
+                <img src="/images/fakeNewsDt.png" alt="Fake News AI App" />
               </div>
-              <h2>AI-Based Fake News Detection System</h2>
+              <h2>AI-Based Fake News Detection</h2>
               <p className="text-white-50 md:text-xl">
-              Python, Flask, Streamlit, Scikit-Learn, NumPy, Matplotlib, Pandas, TF-IDF
+                Python, Flask, Streamlit, Scikit-Learn, TF-IDF.
               </p>
-            </div>
+            </FadeFloatCard>
+
           </div>
         </div>
       </div>

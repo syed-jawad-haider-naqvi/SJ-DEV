@@ -1,10 +1,12 @@
 import { Environment, Float, OrbitControls, useGLTF } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { useEffect } from "react";
+import { useMediaQuery } from "react-responsive";
 import * as THREE from "three";
 
 const TechIconCardExperience = ({ model }) => {
   const scene = useGLTF(model.modelPath);
+    const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
 
   useEffect(() => {
     if (model.name === "Interactive Developer") {
@@ -19,16 +21,15 @@ const TechIconCardExperience = ({ model }) => {
   }, [scene]);
 
   return (
-    <Canvas>
-      <ambientLight intensity={0.3} />
-      <directionalLight position={[5, 5, 5]} intensity={1} />
-      <spotLight
-        position={[10, 15, 10]}
-        angle={0.3}
-        penumbra={1}
-        intensity={2}
-      />
-      <Environment preset="city" />
+    <Canvas
+     frameloop={isMobile ? "demand" : "always"}
+     dpr={isMobile ? 1 : 1.5}
+    >
+
+      <ambientLight intensity={isMobile ? 0.2 : 0.3} />
+      <directionalLight position={[5, 5, 5]} intensity={isMobile ? 0.5 : 1} />
+      {!isMobile && <spotLight position={[10, 15, 10]} angle={0.3} penumbra={1} intensity={2} />}
+      {!isMobile && <Environment preset="city" />}
 
       {/* 
         The Float component from @react-three/drei is used to 
@@ -47,13 +48,16 @@ const TechIconCardExperience = ({ model }) => {
         THREE.Group object contains all the objects (meshes, lights, etc)
         that make up the 3D model.
       */}
-      <Float speed={5.5} rotationIntensity={0.5} floatIntensity={0.9}>
-        <group scale={model.scale} rotation={model.rotation}>
+      <Float
+        speed={isMobile ? 1.5 : 5.5}
+        rotationIntensity={isMobile ? 0.1 : 0.5}
+        floatIntensity={isMobile ? 0.2 : 0.9}
+      >        <group scale={model.scale} rotation={model.rotation}>
           <primitive object={scene.scene} />
         </group>
       </Float>
 
-      <OrbitControls enableZoom={false} />
+      <OrbitControls enableZoom={false} enablePan={!isMobile} />
     </Canvas>
   );
 };

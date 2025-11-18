@@ -52,8 +52,7 @@ const Hero = () => {
             </div>
 
             <p className="text-white-50 md:text-xl relative z-10 pointer-events-none">
-              Hi, I’m Jawad, a developer based in Pakistan with a passion for
-              code.
+              Hi, I’m Jawad, a Software Engineer with a passion to code <br />for innovative, high-impact results..
             </p>
 
             <Button
