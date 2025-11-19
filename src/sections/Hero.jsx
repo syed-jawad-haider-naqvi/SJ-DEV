@@ -51,8 +51,8 @@ const Hero = () => {
               <h1>that Deliver Results</h1>
             </div>
 
-            <p className="text-white-50 md:text-xl relative z-10 pointer-events-none">
-              Hi, I’m Jawad, a Software Engineer with a passion to code <br />for innovative, high-impact results..
+            <p className="text-white-50 md:text-xl relative z-10 pointer-events-none sm:mr-10">
+              Hi, I’m Jawad, a Software Engineer with a passion to code for innovative, high-impact results.
             </p>
 
             <Button
